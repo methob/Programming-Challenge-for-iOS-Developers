@@ -16,21 +16,22 @@ class TesteViewController: BaseViewController, UITableViewDelegate, UITableViewD
         self.startActivityIndicator()
         MediaFilesService(delegate: self).requestMediaFiles()
         
-        tableView.register(UINib(nibName: "mediaCell", bundle: nil), forCellReuseIdentifier: "mediaFileCell")
+        tableView.register(UINib(nibName: "MediaFilesTableViewCell", bundle: nil), forCellReuseIdentifier: "mediaFileCell")
         
+        tableView.estimatedRowHeight = 40
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return medias.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mediaCell", for: indexPath) as! MediaFilesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mediaFileCell", for: indexPath) as! MediaFilesTableViewCell
         
         let media = medias[(indexPath as NSIndexPath).row]
         
-        print(media.name)
-
         cell.name.text = media.name
         cell.imageName.text = media.image
         
