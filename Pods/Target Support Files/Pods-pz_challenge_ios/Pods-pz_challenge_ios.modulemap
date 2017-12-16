@@ -1,0 +1,6 @@
+framework module Pods_pz_challenge_ios {
+  umbrella header "Pods-pz_challenge_ios-umbrella.h"
+
+  export *
+  module * { export * }
+}
