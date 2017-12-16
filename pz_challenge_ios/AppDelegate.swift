@@ -8,6 +8,8 @@
 
 import UIKit
 
+var baseUrl = "http://pbmedia.pepblast.com/pz_challenge/"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
