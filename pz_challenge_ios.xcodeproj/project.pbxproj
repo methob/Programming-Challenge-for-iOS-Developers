@@ -15,12 +15,12 @@
 		AB5BA0821FE56D7F0002F0F3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5BA0811FE56D7F0002F0F3 /* BaseViewController.swift */; };
 		AB5BA0871FE595490002F0F3 /* MediaFilesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5BA0851FE595490002F0F3 /* MediaFilesTableViewCell.swift */; };
 		AB5BA0881FE595490002F0F3 /* MediaFilesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5BA0861FE595490002F0F3 /* MediaFilesTableViewCell.xib */; };
+		AB5CD9A81FE5EAA9008E64E5 /* MultiMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5CD9A71FE5EAA9008E64E5 /* MultiMediaViewController.swift */; };
 		AB9EE1911FE3511D0046835F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9EE1901FE3511D0046835F /* AppDelegate.swift */; };
-		AB9EE1931FE3511D0046835F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9EE1921FE3511D0046835F /* ViewController.swift */; };
 		AB9EE1961FE3511D0046835F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9EE1941FE3511D0046835F /* Main.storyboard */; };
 		AB9EE1981FE3511D0046835F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9EE1971FE3511D0046835F /* Assets.xcassets */; };
 		AB9EE19B1FE3511D0046835F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9EE1991FE3511D0046835F /* LaunchScreen.storyboard */; };
-		ABE8E2DA1FE383750029AF8B /* TesteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8E2D91FE383750029AF8B /* TesteViewController.swift */; };
+		ABE8E2DA1FE383750029AF8B /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8E2D91FE383750029AF8B /* MediaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,14 +33,14 @@
 		AB5BA0811FE56D7F0002F0F3 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AB5BA0851FE595490002F0F3 /* MediaFilesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFilesTableViewCell.swift; sourceTree = "<group>"; };
 		AB5BA0861FE595490002F0F3 /* MediaFilesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaFilesTableViewCell.xib; sourceTree = "<group>"; };
+		AB5CD9A71FE5EAA9008E64E5 /* MultiMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiMediaViewController.swift; sourceTree = "<group>"; };
 		AB9EE18D1FE3511D0046835F /* pz_challenge_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pz_challenge_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB9EE1901FE3511D0046835F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB9EE1921FE3511D0046835F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AB9EE1951FE3511D0046835F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB9EE1971FE3511D0046835F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB9EE19A1FE3511D0046835F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB9EE19C1FE3511D0046835F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ABE8E2D91FE383750029AF8B /* TesteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesteViewController.swift; sourceTree = "<group>"; };
+		ABE8E2D91FE383750029AF8B /* MediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewController.swift; sourceTree = "<group>"; };
 		E2CAC2888F26D1C2D9D42B2D /* Pods_pz_challenge_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pz_challenge_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -104,9 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				AB5BA0851FE595490002F0F3 /* MediaFilesTableViewCell.swift */,
-				ABE8E2D91FE383750029AF8B /* TesteViewController.swift */,
-				AB9EE1921FE3511D0046835F /* ViewController.swift */,
+				ABE8E2D91FE383750029AF8B /* MediaViewController.swift */,
 				AB5BA0811FE56D7F0002F0F3 /* BaseViewController.swift */,
+				AB5CD9A71FE5EAA9008E64E5 /* MultiMediaViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -250,12 +250,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -303,14 +305,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB5BA07C1FE54EF60002F0F3 /* DataAssets.swift in Sources */,
-				AB9EE1931FE3511D0046835F /* ViewController.swift in Sources */,
 				AB5BA0871FE595490002F0F3 /* MediaFilesTableViewCell.swift in Sources */,
+				AB5CD9A81FE5EAA9008E64E5 /* MultiMediaViewController.swift in Sources */,
 				AB9EE1911FE3511D0046835F /* AppDelegate.swift in Sources */,
 				AB5BA0801FE553480002F0F3 /* MediaFilesService.swift in Sources */,
 				AB5BA07A1FE548690002F0F3 /* Media.swift in Sources */,
 				AB5BA0821FE56D7F0002F0F3 /* BaseViewController.swift in Sources */,
 				AB5BA07E1FE551F30002F0F3 /* Text.swift in Sources */,
-				ABE8E2DA1FE383750029AF8B /* TesteViewController.swift in Sources */,
+				ABE8E2DA1FE383750029AF8B /* MediaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

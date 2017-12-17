@@ -8,5 +8,6 @@ target 'pz_challenge_ios' do
   # Pods for pz_challenge_ios
    pod 'Alamofire', '~> 4.5'
    pod 'AlamofireObjectMapper', '~> 4.0'
+   pod 'SDWebImage', '~> 4.0'
 
 end

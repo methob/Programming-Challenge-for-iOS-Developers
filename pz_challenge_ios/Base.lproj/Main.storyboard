@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--COISA-->
+        <!--MediaViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="TesteViewController" title="COISA" id="BYZ-38-t0r" customClass="TesteViewController" customModule="pz_challenge_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TesteViewController" title="COISA" id="BYZ-38-t0r" userLabel="MediaViewController" customClass="MediaViewController" customModule="pz_challenge_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -48,21 +49,20 @@
                             <constraint firstAttribute="bottom" secondItem="6Hv-we-KUb" secondAttribute="bottom" id="qsB-0D-zXj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="COISA" id="wGL-iM-EzJ">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="4lR-YP-MDM"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Pz Challenge" id="wGL-iM-EzJ" userLabel="Pz Challenge"/>
                     <connections>
-                        <outlet property="tableView" destination="6Hv-we-KUb" id="yH0-ob-cAP"/>
+                        <outlet property="tableView" destination="6Hv-we-KUb" id="3Wa-tZ-YVp"/>
+                        <segue destination="eTG-91-DWv" kind="show" identifier="proxima" id="3wd-o1-m0T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1029.375" y="33.802816901408448"/>
         </scene>
-        <!--View Controller-->
+        <!--Midia-->
         <scene sceneID="Vjj-8t-pOG">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="eTG-91-DWv" customClass="ViewController" customModule="pz_challenge_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="eTG-91-DWv" customClass="MultiMediaViewController" customModule="pz_challenge_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5SZ-hk-d0K"/>
                         <viewControllerLayoutGuide type="bottom" id="JwL-LH-XKE"/>
@@ -71,47 +71,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZL-Um-sgR">
-                                <rect key="frame" x="0.0" y="508" width="320" height="60"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.66840277777777779" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="soi-3D-IOh"/>
-                                </constraints>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZo-Hi-7IU">
+                                <rect key="frame" x="16" y="72" width="56" height="30"/>
+                                <state key="normal" title="Anterior"/>
                             </button>
-                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Ta-hJ-isa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BQC-Hy-QM2">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BQC-Hy-QM2" id="t3e-fd-y8Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afX-AF-ao5">
+                                <rect key="frame" x="248" y="72" width="56" height="30"/>
+                                <state key="normal" title="Proximo"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="FZL-Um-sgR" firstAttribute="leading" secondItem="OHk-Te-XtA" secondAttribute="leading" id="7ex-Gg-cw5"/>
-                            <constraint firstItem="JwL-LH-XKE" firstAttribute="top" secondItem="FZL-Um-sgR" secondAttribute="bottom" id="Cru-gs-SE9"/>
-                            <constraint firstItem="8Ta-hJ-isa" firstAttribute="top" secondItem="OHk-Te-XtA" secondAttribute="top" id="Ifw-va-9x4"/>
-                            <constraint firstItem="8Ta-hJ-isa" firstAttribute="leading" secondItem="OHk-Te-XtA" secondAttribute="leading" id="KY3-Ju-AjC"/>
-                            <constraint firstAttribute="trailing" secondItem="FZL-Um-sgR" secondAttribute="trailing" id="hVL-rb-RDc"/>
-                            <constraint firstAttribute="trailing" secondItem="8Ta-hJ-isa" secondAttribute="trailing" id="nc1-Af-ahe"/>
-                            <constraint firstItem="FZL-Um-sgR" firstAttribute="top" secondItem="8Ta-hJ-isa" secondAttribute="bottom" id="prD-ZG-S42"/>
+                            <constraint firstItem="FZo-Hi-7IU" firstAttribute="top" secondItem="5SZ-hk-d0K" secondAttribute="bottom" constant="8" id="Usz-2f-jM4"/>
+                            <constraint firstItem="afX-AF-ao5" firstAttribute="top" secondItem="5SZ-hk-d0K" secondAttribute="bottom" constant="8" id="b3m-81-rwU"/>
+                            <constraint firstItem="afX-AF-ao5" firstAttribute="trailing" secondItem="OHk-Te-XtA" secondAttribute="trailingMargin" id="ddU-Vw-0ZB"/>
+                            <constraint firstItem="FZo-Hi-7IU" firstAttribute="leading" secondItem="OHk-Te-XtA" secondAttribute="leadingMargin" id="izW-cC-3Vc"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="HSUAHSUA" id="3Im-t8-Qgh"/>
+                        <barButtonItem title="Item" id="dNr-UZ-oU3"/>
+                        <barButtonItem title="Item" id="GaZ-kJ-U9w"/>
+                        <barButtonItem title="Item" id="7Cn-vr-T26"/>
+                        <barButtonItem title="Item" id="ceg-4R-SoK"/>
+                        <barButtonItem title="Item" id="ENS-ay-sFF"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Midia" id="txm-kq-3PW" userLabel="Midia"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQx-f1-8CN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974" y="34"/>
+            <point key="canvasLocation" x="1972.5" y="33.802816901408448"/>
         </scene>
         <!--Titulo-->
         <scene sceneID="GOo-J8-kAX">
@@ -129,7 +119,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AdZ-UO-eCr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="31.875" y="698.23943661971828"/>
+            <point key="canvasLocation" x="92" y="34"/>
         </scene>
     </scenes>
 </document>

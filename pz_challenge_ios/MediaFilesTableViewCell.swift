@@ -11,7 +11,8 @@ import UIKit
 class MediaFilesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var imageName: UILabel!
+
+    @IBOutlet weak var mediaImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
