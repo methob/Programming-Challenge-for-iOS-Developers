@@ -18,11 +18,9 @@ class MultiMediaViewController: BaseViewController {
     var currentMidia: Media?
     var playButton:UIButton?
 
-    
     var player:AVPlayer?
     var audioPlayer:AVPlayer?
     let avPlayerViewController = AVPlayerViewController()
-    
     
     override func viewDidLoad() {
         
