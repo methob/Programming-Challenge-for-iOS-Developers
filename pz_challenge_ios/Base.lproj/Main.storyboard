@@ -60,15 +60,17 @@
             <point key="canvasLocation" x="1029.375" y="33.802816901408448"/>
         </scene>
         <!--AV Player View Controller-->
-        <scene sceneID="T01-Ba-Vkv">
+        <scene sceneID="Sdq-JO-dTM">
             <objects>
-                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="1cs-Uf-2yc" customClass="AVPlayerVC" sceneMemberID="viewController">
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="200"/>
-                </avPlayerViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RAg-Xf-aAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="BP2-7G-MvR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vxh-qA-1tq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="DSd-IE-blq">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="92" y="554"/>
+            <point key="canvasLocation" x="744" y="4608"/>
         </scene>
         <!--Multi Media View Controller-->
         <scene sceneID="Vjj-8t-pOG">

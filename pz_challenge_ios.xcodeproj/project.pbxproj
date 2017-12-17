@@ -20,7 +20,9 @@
 		AB9EE1961FE3511D0046835F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9EE1941FE3511D0046835F /* Main.storyboard */; };
 		AB9EE1981FE3511D0046835F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9EE1971FE3511D0046835F /* Assets.xcassets */; };
 		AB9EE19B1FE3511D0046835F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9EE1991FE3511D0046835F /* LaunchScreen.storyboard */; };
+		ABB0D7321FE6E282005C1EDF /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB0D7311FE6E282005C1EDF /* Task.swift */; };
 		ABE612921FE69DAE00B36719 /* AVPlayer in Resources */ = {isa = PBXBuildFile; fileRef = ABE612911FE69DAE00B36719 /* AVPlayer */; };
+		ABE612951FE6B4CF00B36719 /* SharedTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE612941FE6B4CF00B36719 /* SharedTaskManager.swift */; };
 		ABE8E2DA1FE383750029AF8B /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8E2D91FE383750029AF8B /* MediaViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,8 +43,10 @@
 		AB9EE1971FE3511D0046835F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB9EE19A1FE3511D0046835F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB9EE19C1FE3511D0046835F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABB0D7311FE6E282005C1EDF /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		ABE612911FE69DAE00B36719 /* AVPlayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AVPlayer; sourceTree = "<group>"; };
 		ABE612931FE69DD100B36719 /* pz_challenge_ios_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pz_challenge_ios_header.h; sourceTree = "<group>"; };
+		ABE612941FE6B4CF00B36719 /* SharedTaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTaskManager.swift; sourceTree = "<group>"; };
 		ABE8E2D91FE383750029AF8B /* MediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewController.swift; sourceTree = "<group>"; };
 		E2CAC2888F26D1C2D9D42B2D /* Pods_pz_challenge_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pz_challenge_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -82,6 +86,7 @@
 				AB5BA0791FE548690002F0F3 /* Media.swift */,
 				AB5BA07B1FE54EF60002F0F3 /* DataAssets.swift */,
 				AB5BA07D1FE551F30002F0F3 /* Text.swift */,
+				ABB0D7311FE6E282005C1EDF /* Task.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -100,8 +105,9 @@
 			children = (
 				AB5BA0851FE595490002F0F3 /* MediaFilesTableViewCell.swift */,
 				ABE8E2D91FE383750029AF8B /* MediaViewController.swift */,
-				AB5BA0811FE56D7F0002F0F3 /* BaseViewController.swift */,
 				AB5CD9A71FE5EAA9008E64E5 /* MultiMediaViewController.swift */,
+				AB5BA0811FE56D7F0002F0F3 /* BaseViewController.swift */,
+				ABE612941FE6B4CF00B36719 /* SharedTaskManager.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -247,6 +253,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-pz_challenge_ios/Pods-pz_challenge_ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/IJProgressView/IJProgressView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
@@ -254,6 +261,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IJProgressView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
@@ -306,9 +314,11 @@
 				AB5BA0871FE595490002F0F3 /* MediaFilesTableViewCell.swift in Sources */,
 				AB5CD9A81FE5EAA9008E64E5 /* MultiMediaViewController.swift in Sources */,
 				AB9EE1911FE3511D0046835F /* AppDelegate.swift in Sources */,
+				ABB0D7321FE6E282005C1EDF /* Task.swift in Sources */,
 				AB5BA0801FE553480002F0F3 /* MediaFilesService.swift in Sources */,
 				AB5BA07A1FE548690002F0F3 /* Media.swift in Sources */,
 				AB5BA0821FE56D7F0002F0F3 /* BaseViewController.swift in Sources */,
+				ABE612951FE6B4CF00B36719 /* SharedTaskManager.swift in Sources */,
 				AB5BA07E1FE551F30002F0F3 /* Text.swift in Sources */,
 				ABE8E2DA1FE383750029AF8B /* MediaViewController.swift in Sources */,
 			);

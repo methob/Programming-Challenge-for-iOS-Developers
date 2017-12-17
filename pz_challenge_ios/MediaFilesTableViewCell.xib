@@ -32,21 +32,28 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hvd-ND-akL" userLabel="indicatorDownload">
+                        <rect key="frame" x="446" y="48" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="hvd-ND-akL" firstAttribute="centerY" secondItem="YlI-5g-iHw" secondAttribute="centerY" id="0Bb-bA-p6Q"/>
                     <constraint firstItem="ZYa-oo-vT6" firstAttribute="top" secondItem="YlI-5g-iHw" secondAttribute="top" id="0mT-bl-gar"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="hvd-ND-akL" secondAttribute="trailing" constant="16" id="QWl-Ss-HXm"/>
                     <constraint firstItem="YlI-5g-iHw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="RZt-E4-lyI"/>
                     <constraint firstAttribute="bottom" secondItem="YlI-5g-iHw" secondAttribute="bottom" id="cUe-Tp-gfD"/>
                     <constraint firstItem="YlI-5g-iHw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="dOP-mM-PEC"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="ZYa-oo-vT6" secondAttribute="trailing" constant="8" id="mbl-qN-qID"/>
                     <constraint firstItem="ZYa-oo-vT6" firstAttribute="leading" secondItem="YlI-5g-iHw" secondAttribute="trailing" constant="16" id="oJz-v1-ZI5"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="hvd-ND-akL" secondAttribute="bottom" constant="16" id="sm4-HQ-ovQ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="indicatorDownload" destination="hvd-ND-akL" id="mOq-gh-RF5"/>
                 <outlet property="mediaImage" destination="YlI-5g-iHw" id="DOL-Eb-6Mz"/>
                 <outlet property="name" destination="ZYa-oo-vT6" id="8JN-DB-eOc"/>
             </connections>
-            <point key="canvasLocation" x="43" y="58.5"/>
+            <point key="canvasLocation" x="43" y="58"/>
         </tableViewCell>
     </objects>
 </document>

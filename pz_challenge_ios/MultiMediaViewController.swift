@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
+import IJProgressView
 
 class MultiMediaViewController: BaseViewController {
 
@@ -37,14 +38,17 @@ class MultiMediaViewController: BaseViewController {
             
             audioPlayer?.stop()
             player?.pause()
+            
             NotificationCenter.default.removeObserver(self)
+           
             stopDownload()
+            
             player = nil
         }
     }
-    
 }
 
+// MARK: - Audio
 extension MultiMediaViewController: AVAudioPlayerDelegate {
     
     public func playAudio() {
@@ -94,6 +98,7 @@ extension MultiMediaViewController: AVAudioPlayerDelegate {
     }
 }
 
+// MARK: - Video Start and Download
 extension MultiMediaViewController {
     
     public func getVideoFilePath(fileName: String) -> String {
@@ -144,7 +149,6 @@ extension MultiMediaViewController {
         self.avPlayerViewController.view.frame = self.view.bounds
         self.avPlayerViewController.player = player
         self.showDetailViewController(avPlayerViewController, sender: self)
-
         self.view.addSubview(self.avPlayerViewController.view)
         
         self.player?.addObserver(self, forKeyPath: "rate", options: .new, context: nil)
@@ -153,11 +157,6 @@ extension MultiMediaViewController {
         
         NotificationCenter.default.addObserver(self, selector:#selector(self.playerDidFinishPlaying(note:)),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
         
-        //playerLayerAV.videoGravity = AVLayerVideoGravityResizeAspectFill
-
-        //self.view.layer.addSublayer(playerLayerAV)
-        
-       // player?.play()
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -186,16 +185,18 @@ extension MultiMediaViewController {
 
 extension MultiMediaViewController: MediaDownloadDelegate {
     
-    func finishDownload(currentPath: String, isSucess: Bool) {
-            
+    func finishDownload(currentPath: String, assetName: String, isSucess: Bool) {
+        
+            IJProgressView.shared.hideProgressView()
+
             if (isSucess) {
                 
                 downloadOrStartVideo()
                 
             } else {
-                
+
                 showAlertView(title: "Falha", message: "Não foi possível completar o download desse arquivo")
             }
-        }
+    }
 }
 

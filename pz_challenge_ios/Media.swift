@@ -17,6 +17,8 @@ final class Media: NSObject, Mappable {
     var audio : String?
     var image : String?
     var video : String?
+    var showProgress: Bool = false
+    var txts: [Text] = []
     
     required convenience init?(map: Map) {
         self.init()
@@ -28,5 +30,6 @@ final class Media: NSObject, Mappable {
         audio <- map["sg"]
         image <- map["im"]
         video <- map["bg"]
+        txts <- map["txts"]
     }
 }

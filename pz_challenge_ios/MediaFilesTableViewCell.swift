@@ -9,6 +9,8 @@
 import UIKit
 
 class MediaFilesTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var indicatorDownload: UIActivityIndicatorView!
 
     @IBOutlet weak var name: UILabel!
 
