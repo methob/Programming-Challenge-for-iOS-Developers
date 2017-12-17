@@ -28,8 +28,10 @@ class SharedTaskManager: NSObject, URLSessionDownloadDelegate, UIDocumentInterac
             self.backgroundSession.finishTasksAndInvalidate();
         }
 
-        taskManagerQueue.removeLast()
-
+        if (!taskManagerQueue.isEmpty) {
+            taskManagerQueue.removeLast()
+        }
+        
         if (!taskManagerQueue.isEmpty) {
             taskManagerQueue.last?.downloadTask?.resume()
         }
@@ -39,6 +41,11 @@ class SharedTaskManager: NSObject, URLSessionDownloadDelegate, UIDocumentInterac
         
         let assetName = taskManagerQueue.last?.assetName
         
+        if (assetName == nil) {
+            return
+        }
+    
+    
         resumeTaskInQueue()
         
         let fileManager = FileManager()

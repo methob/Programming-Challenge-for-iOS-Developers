@@ -16,9 +16,11 @@ class MultiMediaViewController: BaseViewController {
     var baseAsset: String = ""
     var medias: [Media] = []
     var currentMidia: Media?
+    var playButton:UIButton?
+
     
     var player:AVPlayer?
-    var audioPlayer:AVAudioPlayer?
+    var audioPlayer:AVPlayer?
     let avPlayerViewController = AVPlayerViewController()
     
     
@@ -34,17 +36,18 @@ class MultiMediaViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         
-        if (player != nil && audioPlayer != nil) {
+        if (player != nil) {
             
-            audioPlayer?.stop()
             player?.pause()
-            
-            NotificationCenter.default.removeObserver(self)
-           
-            stopDownload()
-            
             player = nil
         }
+        
+        if (audioPlayer != nil){
+            audioPlayer?.pause()
+        }
+        
+        stopDownload()
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -54,47 +57,23 @@ extension MultiMediaViewController: AVAudioPlayerDelegate {
     public func playAudio() {
         
         let audioUrl = baseAsset + "/" + (currentMidia?.audio)!
-        let url = NSURL(string: audioUrl)
-        print("the url = \(url!)")
-        downloadFileFromURL(url: url!)
+        
+        let url = URL(string: audioUrl)
+        
+        let playerItem:AVPlayerItem = AVPlayerItem(url: url!)
+        
+        audioPlayer = AVPlayer(playerItem: playerItem)
+
+        let playerLayer=AVPlayerLayer(player: audioPlayer!)
+        playerLayer.frame=CGRect(x:0, y:0, width:10, height:50)
+        self.view.layer.addSublayer(playerLayer)
+        audioPlayer?.play()
+        
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
         
         player.pause()
-    }
-    
-    func downloadFileFromURL(url:NSURL){
-        
-        var downloadTask:URLSessionDownloadTask
-        
-        downloadTask = URLSession.shared.downloadTask(with: (url as URL) as URL, completionHandler: { [weak self](URL, response, error) -> Void in
-            self?.play(url: URL!)
-        })
-        
-        downloadTask.resume()
-    }
-    
-    func play(url: URL) {
-        
-        do {
-            
-            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
-            
-            self.audioPlayer?.delegate = self
-            
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.volume = 1.0
-            audioPlayer?.play()
-            
-        } catch let error as NSError {
-            
-            print(error.localizedDescription)
-            
-        } catch {
-            
-            print("AVAudioPlayer init failed")
-        }
     }
 }
 
@@ -130,6 +109,7 @@ extension MultiMediaViewController {
         
         if (path?.isEmpty)! {
             
+            IJProgressView.shared.showProgressView(view)
             startDownload(url: mediaUrl, assetName: mediaName!)
             
         } else {
@@ -167,7 +147,7 @@ extension MultiMediaViewController {
             
         } else if keyPath == "rate" && (change?[NSKeyValueChangeKey.newKey] as? Float) == 1 {
             
-            if ( audioPlayer != nil && !(audioPlayer?.isPlaying)!) {
+            if ( audioPlayer != nil && !(audioPlayer!.rate != 0 && audioPlayer!.error == nil)) {
                 
                 audioPlayer?.play()
             }
