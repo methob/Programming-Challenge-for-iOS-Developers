@@ -20,6 +20,7 @@
 		AB9EE1961FE3511D0046835F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9EE1941FE3511D0046835F /* Main.storyboard */; };
 		AB9EE1981FE3511D0046835F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9EE1971FE3511D0046835F /* Assets.xcassets */; };
 		AB9EE19B1FE3511D0046835F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9EE1991FE3511D0046835F /* LaunchScreen.storyboard */; };
+		ABE612921FE69DAE00B36719 /* AVPlayer in Resources */ = {isa = PBXBuildFile; fileRef = ABE612911FE69DAE00B36719 /* AVPlayer */; };
 		ABE8E2DA1FE383750029AF8B /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE8E2D91FE383750029AF8B /* MediaViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,8 @@
 		AB9EE1971FE3511D0046835F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB9EE19A1FE3511D0046835F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB9EE19C1FE3511D0046835F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABE612911FE69DAE00B36719 /* AVPlayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AVPlayer; sourceTree = "<group>"; };
+		ABE612931FE69DD100B36719 /* pz_challenge_ios_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pz_challenge_ios_header.h; sourceTree = "<group>"; };
 		ABE8E2D91FE383750029AF8B /* MediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaViewController.swift; sourceTree = "<group>"; };
 		E2CAC2888F26D1C2D9D42B2D /* Pods_pz_challenge_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pz_challenge_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -83,14 +86,6 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		AB5BA0841FE594AE0002F0F3 /* custom */ = {
-			isa = PBXGroup;
-			children = (
-				AB5BA0861FE595490002F0F3 /* MediaFilesTableViewCell.xib */,
-			);
-			name = custom;
-			sourceTree = "<group>";
-		};
 		AB8CF5F51FE35A12005305C4 /* assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,7 +117,7 @@
 		AB8CF5F81FE36A66005305C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AB5BA0841FE594AE0002F0F3 /* custom */,
+				AB5BA0861FE595490002F0F3 /* MediaFilesTableViewCell.xib */,
 				AB9EE1941FE3511D0046835F /* Main.storyboard */,
 			);
 			name = Views;
@@ -149,6 +144,7 @@
 		AB9EE18F1FE3511D0046835F /* pz_challenge_ios */ = {
 			isa = PBXGroup;
 			children = (
+				ABE612911FE69DAE00B36719 /* AVPlayer */,
 				AB9EE1901FE3511D0046835F /* AppDelegate.swift */,
 				AB5BA0781FE546190002F0F3 /* Model */,
 				AB5BA0771FE545CD0002F0F3 /* Cloud */,
@@ -156,6 +152,7 @@
 				AB8CF5F71FE35A7B005305C4 /* SupportingFiles */,
 				AB8CF5F61FE35A56005305C4 /* Controller */,
 				AB8CF5F51FE35A12005305C4 /* assets */,
+				ABE612931FE69DD100B36719 /* pz_challenge_ios_header.h */,
 			);
 			path = pz_challenge_ios;
 			sourceTree = "<group>";
@@ -231,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9EE19B1FE3511D0046835F /* LaunchScreen.storyboard in Resources */,
+				ABE612921FE69DAE00B36719 /* AVPlayer in Resources */,
 				AB9EE1981FE3511D0046835F /* Assets.xcassets in Resources */,
 				AB5BA0881FE595490002F0F3 /* MediaFilesTableViewCell.xib in Resources */,
 				AB9EE1961FE3511D0046835F /* Main.storyboard in Resources */,

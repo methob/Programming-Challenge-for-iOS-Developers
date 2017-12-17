@@ -59,7 +59,18 @@
             </objects>
             <point key="canvasLocation" x="1029.375" y="33.802816901408448"/>
         </scene>
-        <!--Midia-->
+        <!--AV Player View Controller-->
+        <scene sceneID="T01-Ba-Vkv">
+            <objects>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="1cs-Uf-2yc" customClass="AVPlayerVC" sceneMemberID="viewController">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="200"/>
+                </avPlayerViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RAg-Xf-aAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="92" y="554"/>
+        </scene>
+        <!--Multi Media View Controller-->
         <scene sceneID="Vjj-8t-pOG">
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="eTG-91-DWv" customClass="MultiMediaViewController" customModule="pz_challenge_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,20 +99,12 @@
                             <constraint firstItem="FZo-Hi-7IU" firstAttribute="leading" secondItem="OHk-Te-XtA" secondAttribute="leadingMargin" id="izW-cC-3Vc"/>
                         </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="HSUAHSUA" id="3Im-t8-Qgh"/>
-                        <barButtonItem title="Item" id="dNr-UZ-oU3"/>
-                        <barButtonItem title="Item" id="GaZ-kJ-U9w"/>
-                        <barButtonItem title="Item" id="7Cn-vr-T26"/>
-                        <barButtonItem title="Item" id="ceg-4R-SoK"/>
-                        <barButtonItem title="Item" id="ENS-ay-sFF"/>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Midia" id="txm-kq-3PW" userLabel="Midia"/>
+                    <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQx-f1-8CN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1972.5" y="33.802816901408448"/>
+            <point key="canvasLocation" x="1941" y="34"/>
         </scene>
         <!--Titulo-->
         <scene sceneID="GOo-J8-kAX">

@@ -61,14 +61,14 @@ extension BaseViewController {
     func validateDiretoryPath(documentDirectoryPath: String, location: URL) {
         
         let fileManager = FileManager()
-        
-        print("ERRRROU")
-        
+                
         let fullPath = documentDirectoryPath.appendingFormat("/"+assetName!)
         
         let destinationURLForFile = URL(fileURLWithPath: fullPath)
         
         if fileManager.fileExists(atPath: destinationURLForFile.path){
+            
+            print("ja tem")
             mediaDelegate?.finishDownload(currentPath: destinationURLForFile.path, isSucess: true)
         }
             

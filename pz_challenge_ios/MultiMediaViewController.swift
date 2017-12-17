@@ -18,6 +18,7 @@ class MultiMediaViewController: BaseViewController {
     
     var player:AVPlayer?
     var audioPlayer:AVAudioPlayer?
+    let avPlayerViewController = AVPlayerViewController()
     
     
     override func viewDidLoad() {
@@ -25,9 +26,7 @@ class MultiMediaViewController: BaseViewController {
         super.viewDidLoad()
         
         self.title = currentMidia?.name
-        
-        print("SNKAJNSJASNA")
-        
+                
         downloadOrStartVideo()
         mediaDelegate = self
     }
@@ -35,12 +34,12 @@ class MultiMediaViewController: BaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         
         if (player != nil && audioPlayer != nil) {
-            player?.pause()
             
-            NotificationCenter.default.removeObserver(self)
-
-            player = nil
             audioPlayer?.stop()
+            player?.pause()
+            NotificationCenter.default.removeObserver(self)
+            stopDownload()
+            player = nil
         }
     }
     
@@ -130,7 +129,7 @@ extension MultiMediaViewController {
             
         } else {
             
-           // playAudio()
+            playAudio()
             playVideo(videoPath: path!)
         }
     }
@@ -140,13 +139,40 @@ extension MultiMediaViewController {
         player = AVPlayer(url: URL(fileURLWithPath: videoPath))
         let playerLayerAV = AVPlayerLayer(player: player)
         
+        playerLayerAV.frame = self.view.frame
+        
+        self.avPlayerViewController.view.frame = self.view.bounds
+        self.avPlayerViewController.player = player
+        self.showDetailViewController(avPlayerViewController, sender: self)
+
+        self.view.addSubview(self.avPlayerViewController.view)
+        
+        self.player?.addObserver(self, forKeyPath: "rate", options: .new, context: nil)
+
+        player?.play()
+        
         NotificationCenter.default.addObserver(self, selector:#selector(self.playerDidFinishPlaying(note:)),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
         
-        playerLayerAV.frame = self.view.bounds
+        //playerLayerAV.videoGravity = AVLayerVideoGravityResizeAspectFill
+
+        //self.view.layer.addSublayer(playerLayerAV)
         
-        self.view.layer.addSublayer(playerLayerAV)
+       // player?.play()
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        player?.play()
+        if keyPath == "rate" && (change?[NSKeyValueChangeKey.newKey] as? Float) == 0 {
+            
+            audioPlayer?.pause()
+            
+        } else if keyPath == "rate" && (change?[NSKeyValueChangeKey.newKey] as? Float) == 1 {
+            
+            if ( audioPlayer != nil && !(audioPlayer?.isPlaying)!) {
+                
+                audioPlayer?.play()
+            }
+        }
     }
 }
 
