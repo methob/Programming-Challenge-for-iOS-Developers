@@ -1,6 +1,7 @@
 
 import UIKit
 import SDWebImage
+import IJProgressView
 
 class MediaViewController: BaseViewController {
 
@@ -57,6 +58,8 @@ extension MediaViewController: UITableViewDataSource {
         
         cell.name.text = media.name
         
+        cell.indicatorDownload.isHidden = !media.showProgress
+                
         let imageUrl = baseAssets + "/" + media.image!
         
         cell.mediaImage.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "placeholder.png"))
@@ -67,8 +70,15 @@ extension MediaViewController: UITableViewDataSource {
 
 extension MediaViewController: MediaDownloadDelegate {
     
-    func finishDownload(currentPath: String, isSucess: Bool) {
+    func finishDownload(currentPath: String, assetName: String, isSucess: Bool) {
+    
+        if let i = medias.index(where: { $0.video == assetName }) {
+            medias[i].showProgress = false
+            tableView.reloadData()
+        }
         
+        IJProgressView.shared.hideProgressView()
+
         if (isSucess) {
             
             showAlertView(title: "Sucesso", message: "Arquivo salvo com sucesso")
@@ -85,7 +95,8 @@ extension MediaViewController: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let mediaName = self.self.medias[(indexPath as NSIndexPath).row].video!
+        let media = self.medias[(indexPath as NSIndexPath).row]
+        let mediaName = media.video!
         let mediaUrl = self.baseAssets + "/" + mediaName
         
         let alert = UIAlertController(title: "Opções", message: "Escolha uma opção", preferredStyle: .actionSheet)
@@ -100,6 +111,11 @@ extension MediaViewController: UITableViewDelegate  {
         }))
         
         alert.addAction(UIAlertAction(title:"Download", style: .default, handler: { (action) in
+            
+            media.showProgress = true
+            
+            tableView.reloadData()
+            
             self.startDownload(url: mediaUrl, assetName: mediaName)
         }))
         

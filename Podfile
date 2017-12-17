@@ -9,5 +9,6 @@ target 'pz_challenge_ios' do
    pod 'Alamofire', '~> 4.5'
    pod 'AlamofireObjectMapper', '~> 4.0'
    pod 'SDWebImage', '~> 4.0'
-
+   pod 'IJProgressView', :git => 'https://github.com/Isuru-Nanayakkara/IJProgressView.git'
+   
 end
