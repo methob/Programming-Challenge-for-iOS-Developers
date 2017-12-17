@@ -91,6 +91,8 @@ extension MediaViewController: UITableViewDelegate  {
         let alert = UIAlertController(title: "Opções", message: "Escolha uma opção", preferredStyle: .actionSheet)
         alert.message = nil
         
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        
         alert.addAction(UIAlertAction(title: "Assistir", style: .default, handler: { (action) in
             
             self.performSegue(withIdentifier: "proxima", sender: indexPath)

@@ -12,6 +12,8 @@ import AVFoundation
 
 class MultiMediaViewController: BaseViewController {
 
+    @IBOutlet weak var contentView: UIView!
+    
     var baseAsset: String = ""
     var medias: [Media] = []
     var currentMidia: Media?
@@ -20,15 +22,16 @@ class MultiMediaViewController: BaseViewController {
     var audioPlayer:AVAudioPlayer?
     let avPlayerViewController = AVPlayerViewController()
     
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.configNavigationItems()
         
         self.title = currentMidia?.name
                 
         downloadOrStartVideo()
         mediaDelegate = self
+
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -41,6 +44,26 @@ class MultiMediaViewController: BaseViewController {
             stopDownload()
             player = nil
         }
+    }
+    
+}
+
+// MARK: - Private Methods
+private extension MultiMediaViewController {
+    
+    func configNavigationItems() {
+        let previousButton = UIBarButtonItem(image: UIImage(named: "ic_skip_previous"), style: .plain, target: self, action: #selector(previousTrackAction))
+        let nextButton = UIBarButtonItem(image: UIImage(named: "ic_skip_next"), style: .plain, target: self, action: #selector(nextTrackAction))
+        
+        navigationItem.rightBarButtonItems = [nextButton, previousButton]
+    }
+    
+    @objc func previousTrackAction(_ sender:Any) {
+        
+    }
+    
+    @objc func nextTrackAction(_ sender:Any) {
+        
     }
     
 }
@@ -139,13 +162,13 @@ extension MultiMediaViewController {
         player = AVPlayer(url: URL(fileURLWithPath: videoPath))
         let playerLayerAV = AVPlayerLayer(player: player)
         
-        playerLayerAV.frame = self.view.frame
+        playerLayerAV.frame = self.contentView.frame
         
-        self.avPlayerViewController.view.frame = self.view.bounds
+        self.avPlayerViewController.view.frame = self.contentView.bounds
         self.avPlayerViewController.player = player
         self.showDetailViewController(avPlayerViewController, sender: self)
-
-        self.view.addSubview(self.avPlayerViewController.view)
+        
+        self.contentView.addSubview(self.avPlayerViewController.view)
         
         self.player?.addObserver(self, forKeyPath: "rate", options: .new, context: nil)
 
