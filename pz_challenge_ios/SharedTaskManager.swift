@@ -77,6 +77,14 @@ class SharedTaskManager: NSObject, URLSessionDownloadDelegate, UIDocumentInterac
         taskManagerQueue.append(task)
     }
     
+    public func cancelLastTask() {
+        
+        if (!taskManagerQueue.isEmpty) {
+            taskManagerQueue.last?.downloadTask?.cancel()
+            taskManagerQueue.removeLast()
+        }
+    }
+    
     private func configBackgroundTask(taskName: String) {
         
         let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: taskName)

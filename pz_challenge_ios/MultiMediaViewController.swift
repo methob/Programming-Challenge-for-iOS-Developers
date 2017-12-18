@@ -103,9 +103,6 @@ extension MultiMediaViewController {
         let playerItem:AVPlayerItem = AVPlayerItem(url: url!)
         audioPlayer = AVPlayer(playerItem: playerItem)
         audioPlayer?.play()
-        
-        self.audioPlayer?.addObserver(self, forKeyPath: "rate", options: .new, context: nil)
-
     }
 }
 
@@ -148,6 +145,33 @@ extension MultiMediaViewController {
         }
     }
     
+    private func buildOverlayView(avPlayerViewController: AVPlayerViewController) -> UIView{
+        
+        let overlayView: UIView? = UIView()
+        
+        overlayView?.frame = CGRect(x: 0, y: 30, width: avPlayerViewController.view.bounds.width, height: 100)
+        overlayView?.isHidden = true
+        overlayView?.backgroundColor = UIColor ( red: 0.5, green: 0.5, blue: 0.5, alpha: 0.379 )
+        
+        let btnNext = UIButton(frame:CGRect(x: avPlayerViewController.view.bounds.width - 60, y: 0, width: 60, height: 44))
+        btnNext.setTitle(">>", for: .focused)
+        overlayView?.addSubview(btnNext)
+        
+        let a: Float = Float((avPlayerViewController.view.bounds.width/2) - 40)
+        
+        let btnReplay = UIButton(frame:CGRect(x: Int(a),y: 0, width: 80,height: 44))
+        btnReplay.setTitle("Replay", for: .application)
+        btnReplay.addTarget(self, action:Selector(("replayVideo")), for:.touchUpInside)
+        overlayView?.addSubview(btnReplay)
+        
+        let btnPrevious = UIButton(frame:CGRect(x: 0, y: 0, width: 80, height: 44))
+        btnPrevious.setTitle("<<", for: .focused)
+        btnPrevious.addTarget(self, action:Selector(("previousVideo")), for:.touchUpOutside)
+        overlayView?.addSubview(btnPrevious)
+        
+        return overlayView!
+    }
+    
     func playVideo(videoPath: String) {
         
         let avPlayerViewController = AVPlayerViewController()
@@ -156,18 +180,20 @@ extension MultiMediaViewController {
         let playerLayerAV = AVPlayerLayer(player: player)
         playerLayerAV.frame = self.view.frame
 
-        
         avPlayerViewController.view.frame = self.view.bounds
         avPlayerViewController.player = player
         avPlayerViewController.videoGravity = AVLayerVideoGravityResize
-      //  avPlayerViewController.showsPlaybackControls = false
+        self.addChildViewController(avPlayerViewController)
+        avPlayerViewController.showsPlaybackControls = true
         
+        avPlayerViewController.contentOverlayView?.addSubview(buildOverlayView(avPlayerViewController: avPlayerViewController))
         
-        self.contentView.addSubview(avPlayerViewController.view)
         self.view.addSubview(avPlayerViewController.view)
         
         avPlayerViewController.player?.prepareForInterfaceBuilder()
         avPlayerViewController.player?.play()
+        
+        self.player?.addObserver(self, forKeyPath: "rate", options: .new, context: nil)
 
         NotificationCenter.default.addObserver(self, selector:#selector(self.playerDidFinishPlaying(note:)),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
     }
@@ -178,6 +204,13 @@ extension MultiMediaViewController {
 extension MultiMediaViewController {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == "rate" && (change?[NSKeyValueChangeKey.newKey] as? Float) == 0 {
+            audioPlayer?.pause()
+        } else if keyPath == "rate" && (change?[NSKeyValueChangeKey.newKey] as? Float) == 1 {
+            audioPlayer?.play()
+        }
+        
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
@@ -205,5 +238,17 @@ extension MultiMediaViewController: MediaDownloadDelegate {
                 showAlertView(title: "Falha", message: "Não foi possível completar o download desse arquivo")
             }
     }
+}
+
+extension AVPlayer {
+    
+    var isPlaying: Bool {
+        if (self.rate != 0 && self.error == nil) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
 }
 

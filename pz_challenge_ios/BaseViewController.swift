@@ -82,7 +82,7 @@ extension BaseViewController {
     }
 
     func stopDownload() {
-        
+        //SharedTaskManager.shared.cancelLastTask()
     }
     
     func resumeDownload() {
