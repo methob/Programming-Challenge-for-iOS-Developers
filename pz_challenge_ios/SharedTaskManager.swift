@@ -8,13 +8,12 @@
 
 import UIKit
 
+// singleton task manager
 class SharedTaskManager: NSObject, URLSessionDownloadDelegate, UIDocumentInteractionControllerDelegate {
 
     // MARK: - Properties
     
     static let shared = SharedTaskManager()
-    
-    // MARK: -
     
     private var taskManagerQueue: [Task] = []
     
@@ -22,59 +21,7 @@ class SharedTaskManager: NSObject, URLSessionDownloadDelegate, UIDocumentInterac
     
     private var mediaDelegate: MediaDownloadDelegate?
     
-    private func resumeTaskInQueue() {
-        
-        if (self.backgroundSession != nil) {
-            self.backgroundSession.finishTasksAndInvalidate();
-        }
-
-        if (!taskManagerQueue.isEmpty) {
-            taskManagerQueue.removeLast()
-        }
-        
-        if (!taskManagerQueue.isEmpty) {
-            taskManagerQueue.last?.downloadTask?.resume()
-        }
-    }
-    
-    private func validateDiretoryPath(documentDirectoryPath: String, location: URL) {
-        
-        let assetName = taskManagerQueue.last?.assetName
-        
-        if (assetName == nil) {
-            return
-        }
-    
-    
-        resumeTaskInQueue()
-        
-        let fileManager = FileManager()
-        
-        let fullPath = documentDirectoryPath.appendingFormat("/"+assetName!)
-        
-        let destinationURLForFile = URL(fileURLWithPath: fullPath)
-        
-        if fileManager.fileExists(atPath: destinationURLForFile.path){
-            
-            mediaDelegate?.finishDownload(currentPath: destinationURLForFile.path, assetName: assetName!, isSucess: true)
-        }
-            
-        else {
-            
-            do {
-                
-                try fileManager.moveItem(at: location, to: destinationURLForFile)
-                
-                mediaDelegate?.finishDownload(currentPath: destinationURLForFile.path, assetName: assetName!, isSucess: true)
-                
-            } catch {
-                
-                mediaDelegate?.finishDownload(currentPath: "", assetName: assetName!, isSucess: false)
-            }
-        }
-    }
-    
-    //MARK: URLSessionTaskDelegate
+    //MARK: Background Task Delegate
     func urlSession(_ session: URLSession,
                     task: URLSessionTask,
                     didCompleteWithError error: Error?){
@@ -106,8 +53,10 @@ class SharedTaskManager: NSObject, URLSessionDownloadDelegate, UIDocumentInterac
                     didWriteData bytesWritten: Int64,
                     totalBytesWritten: Int64,
                     totalBytesExpectedToWrite: Int64){
+        // default
     }
     
+    // MARK: Task Queue manager
     func addNewTask(asset: String, url: String, mediaDelegate: MediaDownloadDelegate) {
         
         configBackgroundTask(taskName: asset)
@@ -133,5 +82,57 @@ class SharedTaskManager: NSObject, URLSessionDownloadDelegate, UIDocumentInterac
         let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: taskName)
         
         backgroundSession = Foundation.URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
+    }
+    
+    private func resumeTaskInQueue() {
+        
+        if (self.backgroundSession != nil) {
+            self.backgroundSession.finishTasksAndInvalidate();
+        }
+        
+        if (!taskManagerQueue.isEmpty) {
+            taskManagerQueue.removeLast()
+        }
+        
+        if (!taskManagerQueue.isEmpty) {
+            taskManagerQueue.last?.downloadTask?.resume()
+        }
+    }
+    
+    private func validateDiretoryPath(documentDirectoryPath: String, location: URL) {
+        
+        let assetName = taskManagerQueue.last?.assetName
+        
+        if (assetName == nil) {
+            let assetName = ""
+            mediaDelegate?.finishDownload(currentPath: assetName, assetName: assetName, isSucess: false)
+        }
+        
+        resumeTaskInQueue()
+        
+        let fileManager = FileManager()
+        
+        let fullPath = documentDirectoryPath.appendingFormat("/"+assetName!)
+        
+        let destinationURLForFile = URL(fileURLWithPath: fullPath)
+        
+        if fileManager.fileExists(atPath: destinationURLForFile.path){
+            
+            mediaDelegate?.finishDownload(currentPath: destinationURLForFile.path, assetName: assetName!, isSucess: true)
+        }
+            
+        else {
+            
+            do {
+                
+                try fileManager.moveItem(at: location, to: destinationURLForFile)
+                
+                mediaDelegate?.finishDownload(currentPath: destinationURLForFile.path, assetName: assetName!, isSucess: true)
+                
+            } catch {
+                
+                mediaDelegate?.finishDownload(currentPath: "", assetName: assetName!, isSucess: false)
+            }
+        }
     }
 }

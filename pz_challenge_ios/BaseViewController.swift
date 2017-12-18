@@ -25,6 +25,7 @@ class BaseViewController: UIViewController {
     }
 }
 
+// MARK: - Alert Events
 extension BaseViewController {
     
     func showAlertView(title: String? = "", message: String) {
@@ -36,6 +37,7 @@ extension BaseViewController {
     }
 }
 
+// MARK: - Indicator(Loading) Events
 extension BaseViewController {
     
     func startActivityIndicator(
@@ -71,12 +73,11 @@ extension BaseViewController {
     }
 }
 
+// MARK: - Download Events
 extension BaseViewController {
     
     public func startDownload(url: String, assetName: String) {
         
-       // IJProgressView.shared.showProgressView(view)
-
         SharedTaskManager.shared.addNewTask(asset: assetName, url: url, mediaDelegate: self as! MediaDownloadDelegate)
     }
 

@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VwS-ot-WBs">
     <device id="retina4_0" orientation="portrait">
-
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17B1003" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VwS-ot-WBs">
-    <device id="ipad12_9" orientation="portrait">
-
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -23,18 +18,18 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Hv-we-KUb">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mediaCell" id="Bo5-UQ-qhh" customClass="MediaFilesTableViewCell" customModule="pz_challenge_ios" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bo5-UQ-qhh" id="C9b-x2-nAe">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -123,35 +118,23 @@
                         <viewControllerLayoutGuide type="bottom" id="JwL-LH-XKE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OHk-Te-XtA">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8A-kn-9qz">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                          
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZo-Hi-7IU">
-                                <rect key="frame" x="20" y="72" width="56" height="30"/>
-                                <state key="normal" title="Anterior"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afX-AF-ao5">
-                                <rect key="frame" x="948" y="72" width="56" height="30"/>
-                                <state key="normal" title="Proximo"/>
-                            </button>
-
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="JwL-LH-XKE" firstAttribute="top" secondItem="x8A-kn-9qz" secondAttribute="bottom" id="3c2-5k-QsE"/>
-                            <constraint firstItem="x8A-kn-9qz" firstAttribute="top" secondItem="5SZ-hk-d0K" secondAttribute="bottom" id="Cdf-0D-XG4"/>
-                            <constraint firstItem="x8A-kn-9qz" firstAttribute="leading" secondItem="OHk-Te-XtA" secondAttribute="leading" id="fyf-Jo-o68"/>
-                            <constraint firstAttribute="trailing" secondItem="x8A-kn-9qz" secondAttribute="trailing" id="mLT-Xs-Str"/>
+                            <constraint firstItem="x8A-kn-9qz" firstAttribute="leading" secondItem="OHk-Te-XtA" secondAttribute="leading" id="c07-OX-ksd"/>
+                            <constraint firstAttribute="trailing" secondItem="x8A-kn-9qz" secondAttribute="trailing" id="cwJ-vh-AUR"/>
+                            <constraint firstItem="JwL-LH-XKE" firstAttribute="top" secondItem="x8A-kn-9qz" secondAttribute="bottom" id="eIj-6v-gdw"/>
+                            <constraint firstItem="x8A-kn-9qz" firstAttribute="top" secondItem="5SZ-hk-d0K" secondAttribute="bottom" id="ehd-Ug-sVM"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contentView" destination="x8A-kn-9qz" id="AYu-Uo-kxE"/>
                     </connections>

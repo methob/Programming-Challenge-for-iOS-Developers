@@ -68,6 +68,7 @@ extension MediaViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - Finish Download Event
 extension MediaViewController: MediaDownloadDelegate {
     
     func finishDownload(currentPath: String, assetName: String, isSucess: Bool) {

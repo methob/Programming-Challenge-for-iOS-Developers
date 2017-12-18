@@ -13,6 +13,7 @@ import IJProgressView
 
 class MultiMediaViewController: BaseViewController {
 
+    // MARK: - Propects   
     @IBOutlet weak var contentView: UIView!
     
     var baseAsset: String = ""
@@ -22,7 +23,6 @@ class MultiMediaViewController: BaseViewController {
 
     var player:AVPlayer?
     var audioPlayer:AVPlayer?
-    let avPlayerViewController = AVPlayerViewController()
     
     override func viewDidLoad() {
         
@@ -30,16 +30,18 @@ class MultiMediaViewController: BaseViewController {
         self.configNavigationItems()
         
         self.title = currentMidia?.name
-                
-        downloadOrStartVideo()
+        
         mediaDelegate = self
-
+        player = nil
+        audioPlayer = nil
+        
+        downloadOrStartVideo()
+    
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         
         if (player != nil) {
-            
             player?.pause()
             player = nil
         }
@@ -65,37 +67,45 @@ private extension MultiMediaViewController {
     
     @objc func previousTrackAction(_ sender:Any) {
         
+        let position = medias.index(of: currentMidia!)
+        let previousPosition = position! == 0 ? medias.count - 1 : position! - 1
+        
+        player?.pause()
+        player = nil
+        audioPlayer?.pause()
+        audioPlayer = nil
+        
+        currentMidia = medias[previousPosition]
+        viewDidLoad()
     }
     
     @objc func nextTrackAction(_ sender:Any) {
+        let position = medias.index(of: currentMidia!)
+        let nextPosition = position! == (medias.count - 1) ? 0 : position! + 1
         
+        player?.pause()
+        player = nil
+        audioPlayer?.pause()
+        audioPlayer = nil
+        
+        currentMidia = medias[nextPosition]
+        viewDidLoad()
     }
-    
 }
 
 // MARK: - Audio
-extension MultiMediaViewController: AVAudioPlayerDelegate {
+extension MultiMediaViewController {
     
     public func playAudio() {
         
         let audioUrl = baseAsset + "/" + (currentMidia?.audio)!
-        
         let url = URL(string: audioUrl)
-        
         let playerItem:AVPlayerItem = AVPlayerItem(url: url!)
-        
         audioPlayer = AVPlayer(playerItem: playerItem)
-
-        let playerLayer=AVPlayerLayer(player: audioPlayer!)
-        playerLayer.frame=CGRect(x:0, y:0, width:10, height:50)
-        self.view.layer.addSublayer(playerLayer)
         audioPlayer?.play()
         
-    }
-    
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
-        
-        player.pause()
+        self.audioPlayer?.addObserver(self, forKeyPath: "rate", options: .new, context: nil)
+
     }
 }
 
@@ -107,15 +117,12 @@ extension MultiMediaViewController {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, .userDomainMask, true)[0] as String
         
         let fileManager = FileManager()
-        
         let fullPath = path.appendingFormat("/"+fileName)
-        
         let destinationURLForFile = URL(fileURLWithPath: fullPath)
         
         if fileManager.fileExists(atPath: destinationURLForFile.path){
             
             return destinationURLForFile.path
-            
         } else {
             
             return ""
@@ -143,43 +150,39 @@ extension MultiMediaViewController {
     
     func playVideo(videoPath: String) {
         
+        let avPlayerViewController = AVPlayerViewController()
+        
         player = AVPlayer(url: URL(fileURLWithPath: videoPath))
         let playerLayerAV = AVPlayerLayer(player: player)
-        
-        playerLayerAV.frame = self.contentView.frame
-        
-        self.avPlayerViewController.view.frame = self.contentView.bounds
-        self.avPlayerViewController.player = player
-        self.showDetailViewController(avPlayerViewController, sender: self)
-        
-        self.contentView.addSubview(self.avPlayerViewController.view)
-        self.view.addSubview(self.avPlayerViewController.view)
-        
-        self.player?.addObserver(self, forKeyPath: "rate", options: .new, context: nil)
+        playerLayerAV.frame = self.view.frame
 
-        player?.play()
         
+        avPlayerViewController.view.frame = self.view.bounds
+        avPlayerViewController.player = player
+        avPlayerViewController.videoGravity = AVLayerVideoGravityResize
+      //  avPlayerViewController.showsPlaybackControls = false
+        
+        
+        self.contentView.addSubview(avPlayerViewController.view)
+        self.view.addSubview(avPlayerViewController.view)
+        
+        avPlayerViewController.player?.prepareForInterfaceBuilder()
+        avPlayerViewController.player?.play()
+
         NotificationCenter.default.addObserver(self, selector:#selector(self.playerDidFinishPlaying(note:)),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
-        
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == "rate" && (change?[NSKeyValueChangeKey.newKey] as? Float) == 0 {
-            
-            audioPlayer?.pause()
-            
-        } else if keyPath == "rate" && (change?[NSKeyValueChangeKey.newKey] as? Float) == 1 {
-            
-            if ( audioPlayer != nil && !(audioPlayer!.rate != 0 && audioPlayer!.error == nil)) {
-                
-                audioPlayer?.play()
-            }
-        }
-    }
 }
 
+// MARK: - Observers Audio and Video
 extension MultiMediaViewController {
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
+        player.pause()
+    }
     
     func playerDidFinishPlaying(note: NSNotification){
         player?.seek(to: kCMTimeZero)
@@ -187,6 +190,7 @@ extension MultiMediaViewController {
     }
 }
 
+// MARK: - Finish Download Event
 extension MultiMediaViewController: MediaDownloadDelegate {
     
     func finishDownload(currentPath: String, assetName: String, isSucess: Bool) {
@@ -196,7 +200,6 @@ extension MultiMediaViewController: MediaDownloadDelegate {
             if (isSucess) {
                 
                 downloadOrStartVideo()
-                
             } else {
 
                 showAlertView(title: "Falha", message: "Não foi possível completar o download desse arquivo")
