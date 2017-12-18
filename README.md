@@ -1,3 +1,3 @@
 # Programming-Challenge-for-iOS-Developers
 
-Ao iniciar Rodar o <b> pod instal </b>
+Ao iniciar Rodar o <b> pod install </b>
